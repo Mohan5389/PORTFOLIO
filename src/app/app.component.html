@@ -1,0 +1,236 @@
+<div class="page-wrapper">
+  <!-- Dynamic Background -->
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+
+  <!-- Floating Navbar -->
+  <header class="header">
+    <nav class="nav-pill">
+      <div class="brand" (click)="scrollTo('home')">Mohan<span>Raj</span></div>
+      <button class="menu-btn" (click)="menuOpen = !menuOpen" aria-label="Menu">
+        <svg *ngIf="!menuOpen" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        <svg *ngIf="menuOpen" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="nav-links" [class.open]="menuOpen">
+        @for (item of ['home','about','projects','experience','contact']; track item) {
+          <button [class.active]="activeSection === item" (click)="scrollTo(item)">
+            {{ item | titlecase }}
+          </button>
+        }
+        <a class="resume-btn" href="assets/Mohanraj_B_resume.pdf" download>{{ 'NAVBAR.RESUME' | translate }}</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="hero-content">
+        <div class="badge fade-in-up">{{ 'HERO.BADGE' | translate }}</div>
+        <h1 class="hero-title fade-in-up delay-1">
+          {{ 'HERO.TITLE_1' | translate }} <br />
+          <span class="text-gradient">{{ 'HERO.TITLE_2' | translate }}</span>
+        </h1>
+        <p class="hero-subtitle fade-in-up delay-2">
+          {{ 'HERO.SUBTITLE' | translate }}
+        </p>
+        <div class="hero-actions fade-in-up delay-3">
+          <button class="btn-primary" (click)="scrollTo('projects')">{{ 'HERO.VIEW_WORK' | translate }}</button>
+          <div class="social-links">
+            <a [href]="githubUrl" target="_blank" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            </a>
+            <a [href]="linkedinUrl" target="_blank" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bento Box About & Skills -->
+    <section id="about" class="bento-section">
+      <div class="section-header">
+        <h2>{{ 'ABOUT.TITLE' | translate }}</h2>
+      </div>
+      <div class="bento-grid">
+        <!-- About Box -->
+        <div class="bento-card col-span-2">
+          <div class="bento-icon">👋</div>
+          <h3>{{ 'ABOUT.WHO_I_AM' | translate }}</h3>
+          <p>
+            {{ 'ABOUT.DESCRIPTION' | translate }}
+          </p>
+          <div class="facts-list">
+            <div class="fact-item">
+              <strong>{{ 'ABOUT.BACKEND' | translate }}</strong>
+              <span>C# / .NET Core / SQL</span>
+            </div>
+            <div class="fact-item">
+              <strong>{{ 'ABOUT.FRONTEND' | translate }}</strong>
+              <span>Angular / TS / CSS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skills Box -->
+        <div class="bento-card col-span-2 skills-card">
+          <h3>{{ 'ABOUT.TECH_STACK' | translate }}</h3>
+          <div class="skills-wrapper">
+            @for (skill of skills; track skill.name) {
+              <div class="skill-pill">{{ skill.name }}</div>
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="projects-section">
+      <div class="section-header">
+        <h2>{{ 'PROJECTS.TITLE' | translate }}</h2>
+      </div>
+      <div class="projects-grid">
+        @for (project of projects; track project.number) {
+          <div class="project-card">
+            <div class="project-content">
+              <div class="project-meta">
+                <span class="project-number">{{ project.number }}</span>
+                <div class="tags">
+                  @for (tag of project.tags; track tag) {
+                    <span class="tag">{{ tag }}</span>
+                  }
+                </div>
+              </div>
+              <h3 class="project-title">{{ project.title }}</h3>
+              <p class="project-desc">{{ project.description }}</p>
+              @if (project.features && project.features.length) {
+                <ul class="project-features">
+                  @for (feature of project.features; track feature) {
+                    <li>
+                      <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      {{ feature }}
+                    </li>
+                  }
+                </ul>
+              }
+            </div>
+            <div class="project-actions">
+              @if (project.githubUrl) {
+                <a [href]="project.githubUrl" class="btn-icon" target="_blank" title="GitHub">{{ 'PROJECTS.CODE' | translate }}</a>
+              }
+              @if (project.demoUrl && project.demoUrl !== '#') {
+                <a [href]="project.demoUrl" class="btn-icon primary" target="_blank" title="Live Demo">{{ 'PROJECTS.LIVE_DEMO' | translate }}</a>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- Experience & Education Layout -->
+    <section id="experience" class="dual-section">
+      <div class="dual-grid">
+        <div class="timeline-container">
+          <h2 class="section-title">{{ 'EXPERIENCE.TITLE' | translate }}</h2>
+          <div class="timeline">
+            @for (exp of experiences; track exp.role) {
+              <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <span class="timeline-date">{{ exp.duration }}</span>
+                  <h3 class="timeline-role">{{ exp.role }}</h3>
+                  <h4 class="timeline-company">{{ exp.company }}</h4>
+                  <ul class="timeline-details">
+                    @for (desc of exp.description; track desc) {
+                      <li>{{ desc }}</li>
+                    }
+                  </ul>
+                  @if (exp.technologies && exp.technologies.length) {
+                    <div class="timeline-tech">
+                      @for (tech of exp.technologies; track tech) {
+                        <span>{{ tech }}</span>
+                      }
+                    </div>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="timeline-container" id="education">
+          <h2 class="section-title">{{ 'EDUCATION.TITLE' | translate }}</h2>
+          <div class="timeline">
+            @for (edu of educations; track edu.degree) {
+              <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <span class="timeline-date">{{ edu.year }}</span>
+                  <h3 class="timeline-role">{{ edu.degree }}</h3>
+                  <h4 class="timeline-company">{{ edu.institution }}</h4>
+                  <p class="timeline-desc">{{ edu.details }}</p>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="contact-card">
+        <div class="contact-info">
+          <h2>{{ 'CONTACT.TITLE' | translate }}</h2>
+          <p>{{ 'CONTACT.SUBTITLE' | translate }}</p>
+          <a [href]="'mailto:' + email" class="contact-email">{{ email }}</a>
+        </div>
+        <div class="contact-form-wrapper">
+          <form class="form" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+            <div class="form-row">
+              <div class="input-group">
+                <label>{{ 'CONTACT.NAME_LABEL' | translate }}</label>
+                <input type="text" name="name" ngModel required [placeholder]="'CONTACT.NAME_PLACEHOLDER' | translate" #nameCtrl="ngModel">
+              </div>
+              <div class="input-group">
+                <label>{{ 'CONTACT.EMAIL_LABEL' | translate }}</label>
+                <input type="email" name="email" ngModel required email [placeholder]="'CONTACT.EMAIL_PLACEHOLDER' | translate" #emailCtrl="ngModel">
+              </div>
+            </div>
+            <div class="input-group">
+              <label>{{ 'CONTACT.SUBJECT_LABEL' | translate }}</label>
+              <input type="text" name="subject" ngModel required [placeholder]="'CONTACT.SUBJECT_PLACEHOLDER' | translate" #subjectCtrl="ngModel">
+            </div>
+            <div class="input-group">
+              <label>{{ 'CONTACT.MESSAGE_LABEL' | translate }}</label>
+              <textarea name="message" ngModel required rows="4" [placeholder]="'CONTACT.MESSAGE_PLACEHOLDER' | translate" #msgCtrl="ngModel"></textarea>
+            </div>
+            
+            <div *ngIf="submitError" class="error-message" style="color: #ff4d4d; margin-bottom: 15px; font-size: 14px;">
+              {{ 'CONTACT.ERROR_MESSAGE' | translate }}
+            </div>
+
+            <button type="submit" class="btn-submit" [disabled]="contactForm.invalid || isSubmitting">
+              <span *ngIf="!isSubmitting && !formSubmitted">{{ 'CONTACT.SEND_MESSAGE' | translate }}</span>
+              <span *ngIf="isSubmitting">{{ 'CONTACT.SENDING' | translate }}</span>
+              <span *ngIf="formSubmitted">{{ 'CONTACT.MESSAGE_SENT' | translate }}</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; {{ currentYear }} {{ 'FOOTER.COPYRIGHT' | translate }}</p>
+      <div class="footer-links">
+        <a [href]="githubUrl" target="_blank">{{ 'FOOTER.GITHUB' | translate }}</a>
+        <a [href]="linkedinUrl" target="_blank">{{ 'FOOTER.LINKEDIN' | translate }}</a>
+      </div>
+    </div>
+  </footer>
+</div>

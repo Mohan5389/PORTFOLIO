@@ -1,0 +1,52 @@
+{
+  "NAVBAR": {
+    "RESUME": "Resume"
+  },
+  "HERO": {
+    "BADGE": "Software Engineer",
+    "TITLE_1": "Engineering Scalable",
+    "TITLE_2": "Web Solutions.",
+    "SUBTITLE": "I'm Mohanraj B, a Software Developer with experience in C#, .NET, ASP.NET Core, and a strong frontend foundation in React and Vue.js.",
+    "VIEW_WORK": "View Work"
+  },
+  "ABOUT": {
+    "TITLE": "About & Skills",
+    "WHO_I_AM": "Who I Am",
+    "DESCRIPTION": "I'm a dedicated developer with hands-on experience in the .NET ecosystem and modern Angular. I thrive in turning complex business requirements into maintainable, elegant software solutions.",
+    "BACKEND": "Backend",
+    "FRONTEND": "Frontend",
+    "TECH_STACK": "Tech Stack"
+  },
+  "PROJECTS": {
+    "TITLE": "Selected Projects",
+    "CODE": "Code",
+    "LIVE_DEMO": "Live Demo"
+  },
+  "EXPERIENCE": {
+    "TITLE": "Experience"
+  },
+  "EDUCATION": {
+    "TITLE": "Education"
+  },
+  "CONTACT": {
+    "TITLE": "Let's work together",
+    "SUBTITLE": "Open for opportunities, freelance projects, or just a chat. Drop a message!",
+    "NAME_LABEL": "Name",
+    "NAME_PLACEHOLDER": "Your Name",
+    "EMAIL_LABEL": "Email",
+    "EMAIL_PLACEHOLDER": "hello@example.com",
+    "SUBJECT_LABEL": "Subject",
+    "SUBJECT_PLACEHOLDER": "Project Inquiry",
+    "MESSAGE_LABEL": "Message",
+    "MESSAGE_PLACEHOLDER": "How can I help you?",
+    "ERROR_MESSAGE": "Oops! There was a problem submitting your form. Please try again.",
+    "SEND_MESSAGE": "Send Message",
+    "SENDING": "Sending...",
+    "MESSAGE_SENT": "Message Sent! ✓"
+  },
+  "FOOTER": {
+    "COPYRIGHT": "Mohan Raj. All rights reserved.",
+    "GITHUB": "GitHub",
+    "LINKEDIN": "LinkedIn"
+  }
+}
