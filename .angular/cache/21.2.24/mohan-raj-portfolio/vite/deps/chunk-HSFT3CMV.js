@@ -1,17 +1,17 @@
 import {
   withHttpTransferCache
-} from "./chunk-OLLIWL23.js";
+} from "./chunk-DV37BKO2.js";
 import {
   CommonModule,
   PLATFORM_BROWSER_ID
-} from "./chunk-AG7KMIZP.js";
+} from "./chunk-3YEFZAK4.js";
 import {
   DomAdapter,
   XhrFactory,
   getDOM,
   parseCookieValue,
   setRootDomAdapter
-} from "./chunk-6NERJL4O.js";
+} from "./chunk-CF3DPMUD.js";
 import {
   APP_ID,
   ApplicationModule,
@@ -72,7 +72,7 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-O3XV5B6Q.js";
+} from "./chunk-MCFYF3LA.js";
 import {
   __async,
   __spreadValues
@@ -1726,7 +1726,7 @@ function provideClientHydration(...features) {
   }
   return makeEnvironmentProviders([typeof ngDevMode !== "undefined" && ngDevMode ? provideEnabledBlockingInitialNavigationDetector() : [], typeof ngDevMode !== "undefined" && ngDevMode ? provideStabilityDebugging() : [], withDomHydration(), featuresKind.has(HydrationFeatureKind.NoHttpTransferCache) || hasHttpTransferCacheOptions ? [] : withHttpTransferCache({}), providers]);
 }
-var VERSION = new Version("21.2.23");
+var VERSION = new Version("21.2.24");
 
 export {
   EventManagerPlugin,
@@ -1765,4 +1765,4 @@ export {
   provideClientHydration,
   VERSION
 };
-//# sourceMappingURL=chunk-MTLPJXNP.js.map
+//# sourceMappingURL=chunk-HSFT3CMV.js.map

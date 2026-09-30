@@ -1,7 +1,7 @@
 import {
   Title
-} from "./chunk-MTLPJXNP.js";
-import "./chunk-OLLIWL23.js";
+} from "./chunk-HSFT3CMV.js";
+import "./chunk-DV37BKO2.js";
 import {
   HashLocationStrategy,
   Location,
@@ -11,11 +11,11 @@ import {
   PathLocationStrategy,
   PlatformNavigation,
   ViewportScroller
-} from "./chunk-AG7KMIZP.js";
+} from "./chunk-3YEFZAK4.js";
 import {
   LOCATION_INITIALIZED,
   PlatformLocation
-} from "./chunk-6NERJL4O.js";
+} from "./chunk-CF3DPMUD.js";
 import {
   APP_BOOTSTRAP_LISTENER,
   ApplicationRef,
@@ -121,7 +121,7 @@ import {
   ɵɵloadQuery,
   ɵɵqueryRefresh,
   ɵɵsanitizeUrlOrResourceUrl
-} from "./chunk-O3XV5B6Q.js";
+} from "./chunk-MCFYF3LA.js";
 import {
   __async,
   __spreadProps,
@@ -527,6 +527,14 @@ function serializeQueryParams(params) {
   }).filter((s) => s);
   return strParams.length ? `?${strParams.join("&")}` : "";
 }
+var SLOW_ELEMENTS_SENTINEL = 1073741824;
+function setUrlDerivedKey(target, key, value) {
+  if (Number(key) >= 32 && !Object.hasOwn(target, SLOW_ELEMENTS_SENTINEL)) {
+    target[SLOW_ELEMENTS_SENTINEL] = value;
+    delete target[SLOW_ELEMENTS_SENTINEL];
+  }
+  target[key] = value;
+}
 var SEGMENT_RE = /^[^\/()?;#]+/;
 function matchSegments(str) {
   const match2 = str.match(SEGMENT_RE);
@@ -633,7 +641,7 @@ var UrlParser = class {
         this.capture(value);
       }
     }
-    params[decode(key)] = decode(value);
+    setUrlDerivedKey(params, decode(key), decode(value));
   }
   parseQueryParam(params) {
     const key = matchQueryParams(this.remaining);
@@ -680,7 +688,8 @@ var UrlParser = class {
         outletName = PRIMARY_OUTLET;
       }
       const children = this.parseChildren(depth + 1);
-      segments[outletName ?? PRIMARY_OUTLET] = Object.keys(children).length === 1 && children[PRIMARY_OUTLET] ? children[PRIMARY_OUTLET] : new UrlSegmentGroup([], children);
+      const child = Object.keys(children).length === 1 && children[PRIMARY_OUTLET] ? children[PRIMARY_OUTLET] : new UrlSegmentGroup([], children);
+      setUrlDerivedKey(segments, outletName ?? PRIMARY_OUTLET, child);
       this.consumeOptional("//");
     }
     return segments;
@@ -712,10 +721,10 @@ function squashSegmentGroup(segmentGroup) {
     const childCandidate = squashSegmentGroup(child);
     if (childOutlet === PRIMARY_OUTLET && childCandidate.segments.length === 0 && childCandidate.hasChildren()) {
       for (const [grandChildOutlet, grandChild] of Object.entries(childCandidate.children)) {
-        newChildren[grandChildOutlet] = grandChild;
+        setUrlDerivedKey(newChildren, grandChildOutlet, grandChild);
       }
     } else if (childCandidate.segments.length > 0 || childCandidate.hasChildren()) {
-      newChildren[childOutlet] = childCandidate;
+      setUrlDerivedKey(newChildren, childOutlet, childCandidate);
     }
   }
   const s = new UrlSegmentGroup(segmentGroup.segments, newChildren);
@@ -6027,7 +6036,7 @@ function mapToCanDeactivate(providers) {
 function mapToResolve(provider) {
   return (...params) => inject(provider).resolve(...params);
 }
-var VERSION = new Version("21.2.23");
+var VERSION = new Version("21.2.24");
 export {
   ActivatedRoute,
   ActivatedRouteSnapshot,
